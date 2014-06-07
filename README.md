@@ -13,6 +13,7 @@ To use Blocmetrics you simply need to add the following snippet right above the 
    
 Once you've added the script, you're good to go!  
 You can add send custom attributes with each event like this:  
+
 [add instructions]  
    
 
