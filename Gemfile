@@ -33,6 +33,13 @@ group :development, :test do
 	gem 'pry'
 	gem 'pry-nav'
 	gem 'pry-remote'
+
+	# Fake web requests in ruby
+	gem "fakeweb", "~> 1.3"
+
+	# Helper for testing time-dependent code
+	# gem 'timecop', '~> 0.7.1'
+	gem "rack-test", require: "rack/test"
 end
 
 # Authentication, managing secrets
