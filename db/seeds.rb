@@ -1,7 +1,17 @@
-# This file should contain all the record creation needed to seed the database with its default values.
-# The data can then be loaded with the rake db:seed (or created alongside the db with db:setup).
-#
-# Examples:
-#
-#   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
-#   Mayor.create(name: 'Emanuel', city: cities.first)
+require 'faker'
+
+print 'Generating test Events: '
+90.times do 
+	event = Event.new
+	referers = ['locahost.com', 'mysite.com', 'testing.org']
+  names = [ 'first', 'second', 'third', 'fourth' ]
+	referer = referers[rand(1..3)]
+	name = names[rand(1..4)]
+	property_1 = rand(1..5).to_s
+	property_2 = rand(5..25).to_s
+
+	event.update_attributes(referer: referer, name: name, property_1: property_1, property_2: property_2)
+	event.save
+	print '.'
+end
+puts ' '
