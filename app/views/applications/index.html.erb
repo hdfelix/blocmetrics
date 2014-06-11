@@ -4,8 +4,9 @@
 			<h3>Event Data for Application: Blocipedia</h3>
 			<div>
 				<span>05/04/2014</span><span>[calendar]</span>
-				<%= content_tag 'canvas', '', id: 'first_chart', height: '450', width: '600' %>
-				<%= content_tag 'canvas', '', id: 'events_chart', height: '450', width: '600' %>
+				<br />
+				<%= content_tag 'canvas', '', id: 'first_chart', height: '350', width: '500' %>
+				<%= content_tag 'canvas', '', id: 'events_chart', height: '450', width: '500' %>
 
 				<script>
 					var dataFirstChart = {
@@ -29,7 +30,7 @@
 					}
 
 				var ctxFirstChart = $("#first_chart").get(0).getContext("2d");
-				var firstChartline = new Chart(ctxFirstChart).Bar(dataFirstChart);
+				var firstChartline = new Chart(ctxFirstChart).Line(dataFirstChart);
 	
 
 				</script>
@@ -43,7 +44,7 @@
 					var dataEvents = {
 						labels : <%= raw(events_labels.uniq) %>,
 					datasets : [
-							<% for i in 1..Event.count - 1 %>
+							<% for i in 1..Event.count - 79 %>
 								<%= raw("
 									{
 										fillColor : 'rgba(220,220,220,0.5)', 
