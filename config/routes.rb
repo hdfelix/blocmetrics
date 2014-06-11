@@ -8,4 +8,6 @@ Rails.application.routes.draw do
 			resources :events, only: [:show, :index, :create]
 		end
 	end
+
+	root to: 'applications#index'
 end

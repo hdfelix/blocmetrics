@@ -6,6 +6,7 @@ after_filter :cors_set_access_control_headers
 	def index
 		@events = Event.all
 	  respond_with (@events)
+
 	end
 
 	def create
@@ -25,19 +26,19 @@ after_filter :cors_set_access_control_headers
 	end
 
 	def cors_set_access_control_headers
-		headers['Access-Control-Allow-Origin'] = 'http://localhost:3001'
+		headers['Access-Control-Allow-Origin'] = '*'
     headers['Access-Control-Allow-Methods'] = 'POST, GET, OPTIONS'
-		headers['Access-Control-Headers'] = '*'
+		headers['Access-Control-Headers'] = 'Content-Type'
     headers['Access-Control-Max-Age'] = "1728000"
-		headers['Access-Control-Allow-Credentials'] = 'true'
+		#headers['Access-Control-Allow-Credentials'] = 'true'
 	end
 
 	def cors_preflight_check
-		headers['Access-Control-Allow-Origin'] = 'http://localhost:3001'
+		headers['Access-Control-Allow-Origin'] = '*'
 		headers['Access-Control-Allow-Methods'] = 'POST, GET, OPTIONS'
-		headers['Access-Control-Allow-Headers'] = '*'#'X-Requested-With, X-Prototype-Version'
+		headers['Access-Control-Allow-Headers'] = 'X-Requested-With, X-Prototype-Version'
 		headers['Access-Control-Max-Age'] = '1728000'
-		headers['Access-Control-Allow-Credentials'] = 'true'
+		#headers['Access-Control-Allow-Credentials'] = 'true'
 		#render :text => '', :content_type => 'text/plain'
 	end
 end
