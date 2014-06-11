@@ -44,12 +44,12 @@
 					var dataEvents = {
 						labels : <%= raw(events_labels.uniq) %>,
 					datasets : [
-							<% for i in 1..Event.count - 79 %>
+							<% for i in 1..Event.count - 85 %>
 								<%= raw("
 									{
-										fillColor : 'rgba(220,220,220,0.5)', 
-										strokeColor : 'rgba(220,220,220,1)',
-										pointColor : 'rgba(220,220,220,1)',
+										fillColor : 'rgba(151,187,205,0.5)',
+										strokeColor : 'rgba(151,187,205,1)',
+										pointColor : 'rgba(151,187,205,1)',
 										pointStrokeColor : '#fff',
 										data : [ #{Event.find(i).property_1}, #{Event.find(i).property_2} ]
 									},")
@@ -57,9 +57,9 @@
 							<% end %>
 							<%= raw("
 								{
-									fillColor : 'rgba(220,220,220,0.5)', 
-									strokeColor : 'rgba(220,220,220,1)',
-									pointColor : 'rgba(220,220,220,1)',
+									fillColor : 'rgba(151,187,205,0.5)',
+									strokeColor : 'rgba(151,187,205,1)',
+									pointColor : 'rgba(151,187,205,1)',
 									pointStrokeColor : '#fff',
 									data : [ #{Event.last.property_1}, #{Event.last.property_2} ]
 								}")

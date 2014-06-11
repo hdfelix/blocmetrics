@@ -5,7 +5,7 @@ print 'Generating test Events: '
 	event = Event.new
 	referers = ['locahost.com', 'mysite.com', 'testing.org']
   names = [ 'first', 'second', 'third', 'fourth' ]
-	referer = referers[rand(1..3)]
+	referer = referers[rand(0..3)]
 	name = names[rand(1..4)]
 	property_1 = rand(1..5).to_s
 	property_2 = rand(5..25).to_s
