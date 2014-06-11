@@ -3,7 +3,29 @@
 		<div>
 			<h3>Event Data for Application: Blocipedia</h3>
 			<div>
-				<span>05/04/2014</span><span>[calendar]</span>
+				<h4>
+				<br />
+					<span>
+						<%= Time.now.strftime('%b %Y') %>
+					</span>
+						 <!--%= form_for @referers, html: {class: 'form-inline'} do |f| %-->
+							<!--div class="form-group"-->
+								<!--%= f.label :referers, class: 'sr-only' %-->
+								<!--%= f.text_field :referers, class: 'form-control' %><br /-->
+							<!--/div-->
+						<!--% end %-->
+					<span>
+						
+					</span>
+				</h4>
+				<br />
+					<div>
+						<select name="user_id">
+							<%= @referers.each do |referer| %>
+								<option value="<%= referer[1] %>"><%= referer[0] %></option>
+							<% end %>
+						</select>
+					</div>
 				<br />
 				<%= content_tag 'canvas', '', id: 'first_chart', height: '350', width: '500' %>
 				<%= content_tag 'canvas', '', id: 'events_chart', height: '450', width: '500' %>
