@@ -1,19 +1,12 @@
 class ApplicationsController < ApplicationController
 	def index
 		@events = Event.all
-
-
-		@events_for_graph = [] #temp for testing
-		@graph_labels = []
 		@referers = []
 		@all_referers = []
 		@events.all.each do |event|
 			unless event.referer == nil	
 				@all_referers << event.referer
-				@graph_labels << event.referer
-				#@events_for_graph << event unless %w(1 2 3 4 5).include?(event.property_1)
 			end
-
 		 end
 
 		@all_referers = @all_referers.uniq
@@ -23,5 +16,8 @@ class ApplicationsController < ApplicationController
 			@referers << [referer,i]
 			i += 1
 		end
+
+		#Override value until code refactoring to display a better graph
+		@all_referers = [@events.last.referer]
 	end
 end

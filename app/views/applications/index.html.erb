@@ -59,11 +59,9 @@
 				<!-- Pages visited -->
 				<script>
 					var dataEvents = {
-						<% binding.pry %>
 						labels : <%= raw(@all_referers) %>,
 					datasets : [
-							<% @events_for_graph.each do |e| %>
-								<% console e %>
+						<% @events.find([%w(100 101 102 103 104 105)]).each do |e| %>
 								<% unless e.id == Event.last.id %>
 									<%= raw("
 										{
