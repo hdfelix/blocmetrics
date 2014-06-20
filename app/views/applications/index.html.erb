@@ -21,9 +21,9 @@
 				<br />
 					<div>
 						<select name="user_id">
-							<%= @referers.each do |referer| %>
-								<option value="<%= referer[1] %>"><%= referer[0] %></option>
-							<% end %>
+							<!--%= @referers.each do |referer| %-->
+								<option value="<%= @referers.last[1] %>"><%= @referers.last[0] %></option>
+							<!--% end %-->
 						</select>
 					</div>
 				<br />
@@ -59,9 +59,11 @@
 				<!-- Pages visited -->
 				<script>
 					var dataEvents = {
+						<% binding.pry %>
 						labels : <%= raw(@all_referers) %>,
 					datasets : [
 							<% @events_for_graph.each do |e| %>
+								<% console e %>
 								<% unless e.id == Event.last.id %>
 									<%= raw("
 										{
@@ -80,8 +82,9 @@
 									strokeColor : 'rgba(151,187,205,1)',
 									pointColor : 'rgba(151,187,205,1)',
 									pointStrokeColor : '#fff',
-									data : [ #{@events_for_graph.last.property_1.size}, #{@events_for_graph.last.property_2.size} ]
+									data : [ #{Event.last.property_1.size}, #{Event.last.property_2.size} ]
 								}")
+							
 							%>
 						]
 					}
