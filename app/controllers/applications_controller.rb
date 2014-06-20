@@ -18,6 +18,10 @@ class ApplicationsController < ApplicationController
 		end
 
 		#Override value until code refactoring to display a better graph
-		@all_referers = [@events.last.referer]
+		if @events.all.count != 0
+			@all_referers = [@events.last.referer]
+		else
+			@all_referers = "No data"
+		end
 	end
 end

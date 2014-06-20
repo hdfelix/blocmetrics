@@ -27,7 +27,6 @@ $( document ).ready(function() {
 });
   </script>
 ```
-   
 Once you've added the script, you're good to go!  
 You can add send custom attributes with each event by changing the properties sent on the `_bm_event` variable.
  

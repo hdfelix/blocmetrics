@@ -19,76 +19,82 @@
 					</span>
 				</h4>
 				<br />
+				<% if @events.all.count == 0 %>
+					<div style="padding: 200px">
+						<center><h3>No Data available. Waiting for data to arrive...</h3></center>
+					</div>
+				<% else %>
 					<div>
 						<select name="user_id">
-							<!--%= @referers.each do |referer| %-->
+							<%= @referers.each do |referer| %>
 								<option value="<%= @referers.last[1] %>"><%= @referers.last[0] %></option>
-							<!--% end %-->
+							<% end %>
 						</select>
 					</div>
-				<br />
-				<%= content_tag 'canvas', '', id: 'first_chart', height: '350', width: '500' %>
-				<%= content_tag 'canvas', '', id: 'events_chart', height: '450', width: '500' %>
+						<br />
+						<%= content_tag 'canvas', '', id: 'first_chart', height: '350', width: '500' %>
+						<%= content_tag 'canvas', '', id: 'events_chart', height: '450', width: '500' %>
 
-				<script>
-					var dataFirstChart = {
-						labels : ["January","February","March","April","May","June","July"],
-						datasets : [
-							{
-								fillColor : "rgba(220,220,220,0.5)",
-								strokeColor : "rgba(220,220,220,1)",
-								pointColor : "rgba(220,220,220,1)",
-								pointStrokeColor : "#fff",
-								data : [65,59,90,81,56,55,40]
-							},
-							{
-								fillColor : "rgba(151,187,205,0.5)",
-								strokeColor : "rgba(151,187,205,1)",
-								pointColor : "rgba(151,187,205,1)",
-								pointStrokeColor : "#fff",
-								data : [28,48,40,19,96,27,100]
+						<script>
+							var dataFirstChart = {
+								labels : ["January","February","March","April","May","June","July"],
+								datasets : [
+									{
+										fillColor : "rgba(220,220,220,0.5)",
+										strokeColor : "rgba(220,220,220,1)",
+										pointColor : "rgba(220,220,220,1)",
+										pointStrokeColor : "#fff",
+										data : [65,59,90,81,56,55,40]
+									},
+									{
+										fillColor : "rgba(151,187,205,0.5)",
+										strokeColor : "rgba(151,187,205,1)",
+										pointColor : "rgba(151,187,205,1)",
+										pointStrokeColor : "#fff",
+										data : [28,48,40,19,96,27,100]
+									}
+								]
 							}
-						]
-					}
 
-				var ctxFirstChart = $("#first_chart").get(0).getContext("2d");
-				var firstChartline = new Chart(ctxFirstChart).Line(dataFirstChart);
-	
+						var ctxFirstChart = $("#first_chart").get(0).getContext("2d");
+						var firstChartline = new Chart(ctxFirstChart).Line(dataFirstChart);
+			
 
-				</script>
-				<!-- Pages visited -->
-				<script>
-					var dataEvents = {
-						labels : <%= raw(@all_referers) %>,
-					datasets : [
-						<% @events.find([%w(100 101 102 103 104 105)]).each do |e| %>
-								<% unless e.id == Event.last.id %>
+						</script>
+						<!-- Pages visited -->
+						<script>
+							var dataEvents = {
+								labels : <%= raw(@all_referers) %>,
+							datasets : [
+								<% @events.all.each do |e| %>
+										<% unless e.id == Event.last.id %>
+											<%= raw("
+												{
+													fillColor : 'rgba(151,187,205,0.5)',
+													strokeColor : 'rgba(151,187,205,1)',
+													pointColor : 'rgba(151,187,205,1)',
+													pointStrokeColor : '#fff',
+													data : [ #{e.property_1.size}, #{e.property_2.size} ]
+												},")
+											%>	
+										<% end %>
+									<% end %>
 									<%= raw("
 										{
 											fillColor : 'rgba(151,187,205,0.5)',
 											strokeColor : 'rgba(151,187,205,1)',
 											pointColor : 'rgba(151,187,205,1)',
 											pointStrokeColor : '#fff',
-											data : [ #{e.property_1.size}, #{e.property_2.size} ]
-										},")
-									%>	
-								<% end %>
-							<% end %>
-							<%= raw("
-								{
-									fillColor : 'rgba(151,187,205,0.5)',
-									strokeColor : 'rgba(151,187,205,1)',
-									pointColor : 'rgba(151,187,205,1)',
-									pointStrokeColor : '#fff',
-									data : [ #{Event.last.property_1.size}, #{Event.last.property_2.size} ]
-								}")
-							
-							%>
-						]
-					}
-				var ctxEventsChart = $("#events_chart").get(0).getContext("2d");
-				var eventChartLine = new Chart(ctxEventsChart).Bar(dataEvents);
-				</script>
+											data : [ #{Event.last.property_1.size}, #{Event.last.property_2.size} ]
+										}")
+									
+									%>
+								]
+							}
+						var ctxEventsChart = $("#events_chart").get(0).getContext("2d");
+						var eventChartLine = new Chart(ctxEventsChart).Bar(dataEvents);
+						</script>
+				<% end %>
 			</div>
 		</div>
 	</div>
