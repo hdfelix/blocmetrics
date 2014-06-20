@@ -10,7 +10,6 @@ after_filter :cors_set_access_control_headers
 	end
 
 	def create
-		binding.pry
 		@event = Event.new(JSON.parse(params[:event].to_json))
 		if @event.save
 			respond_with @event, location: api_v1_event_path(@event)
@@ -22,7 +21,6 @@ after_filter :cors_set_access_control_headers
 	private
 	
 	def event_params
-		binding.pry
 		params.require(:event).permit(:referer, :name, :property_1, :property_2)
 	end
 
