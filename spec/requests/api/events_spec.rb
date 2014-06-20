@@ -11,6 +11,7 @@ describe 'Events API' do
 				FactoryGirl.create(:event)
 			end
 		  get "#{url}.json" 
+			binding.pry
 			events = JSON.parse(response.body)
 			expect(events.size).to eq 5
 		end
